@@ -1,27 +1,28 @@
 <%= form_with(model: @recipe, local: true) do |form| %>
   <% if @recipe.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(recipe.errors.count, "error") %> prevented this recipe from saving:</h2>
+      <p>
+        <%= pluralize(@recipe.errors.count, "error") %> prevented this recipe from saving:
+      </p>
 
       <ul>
-      <% recipe.errors.full_messages.each do |message| %>
+      <% @recipe.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :recipe_title %>
+  <div class="panel-body">
+    <%= form.label :title, input_html: {class: 'form-control'} %>
+    <%= form.text_field :title, id: :recipe_title, input_html: {class: 'form-control'} %>
+  </div>
+  <div class="panel-body">
+    <%= form.label :description, input_html: {class: 'form-control'} %>
+    <%= form.text_area :description, id: :recipe_description, input_html: {class: 'form-control'} %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description, id: :recipe_description %>
-  </div>
-
-  <div class="actions">
+  <div class="btn btn-primary">
     <%= form.submit %>
   </div>
 <% end %>
