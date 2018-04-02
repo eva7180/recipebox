@@ -13,19 +13,27 @@
   	<nav class="navbar navbar-default">
   		<div class="container">
     		<p class="navbar-brand"> <%= link_to "Recipe Box", root_path %></p>
-    		<ul class="nav navbar-nav navbar-right">
-      			<li><%= link_to "New Recipe", new_recipe_path %></li>
-      			<li><%= link_to "Sign Out", root_path %></li>
-    		</ul>
+    		
+        <% if user_signed_in? %>
+          <ul class="nav navbar-nav navbar-right">
+      	 		<li><%= link_to "New Recipe", new_recipe_path %></li>
+      	 		<li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+    		  </ul>
+        <% else %>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Sign Up", new_user_registration_path %></li>
+            <li><%= link_to "Sign In", new_user_session_path %></li>
+          </ul>
+        <% end %>
   		</div>
-	</nav>
+    </nav>
 
-	<div class="container">
-		<% flash.each do |name, msg| %>
-			<%= content_tag :div, msg, class: "alert" %>
-		<% end %>
-		<%= yield %>
-	</div>
+    <div class="container">
+    	<% flash.each do |name, msg| %>
+    		<%= content_tag :div, msg, class: "alert" %>
+    	<% end %>
+    	<%= yield %>
+    </div>
 
   </body>
 </html>
