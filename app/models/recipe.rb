@@ -1,5 +1,5 @@
 class Recipe < ApplicationRecord
-	belongs_to :user
+	belongs_to :user, optional: true
 
 	has_many :ingredients, inverse_of: :recipe
 	has_many :directions, inverse_of: :recipe
