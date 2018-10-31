@@ -6,7 +6,6 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rails', '~> 5.1.4'
-gem 'sqlite3'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -20,6 +19,7 @@ gem 'sprockets-rails', :require => 'sprockets/railtie'
 #gem 'simple_form', '~> 3.5'
 gem 'jquery-rails'
 gem 'paperclip', '~> 6.0.0'
+gem 'pg'
 
 group :development, :test do
   gem 'pry-rails'
