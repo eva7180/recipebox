@@ -19,7 +19,7 @@ gem 'sprockets-rails', :require => 'sprockets/railtie'
 #gem 'simple_form', '~> 3.5'
 gem 'jquery-rails'
 gem 'paperclip', '~> 6.0.0'
-gem 'pg'
+gem 'pg', '~> 0.18.4'
 
 group :development, :test do
   gem 'pry-rails'
