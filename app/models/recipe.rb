@@ -1,3 +1,5 @@
+require 'uploads'
+
 class Recipe < ApplicationRecord
 	belongs_to :user, optional: true
 
@@ -8,6 +10,25 @@ class Recipe < ApplicationRecord
 	
 	validates :title, :description, presence: :true
 
-	has_attached_file :image, styles: { medium: "400x400#" }
-	validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+	has_one_attached :image
+
+	validate :image_format
+
+
+	def image_variant
+  	variation =
+    ActiveStorage::Variation.new(Uploads.resize_to_fill(width: 400, height: 400, blob: image.blob))
+  	ActiveStorage::Variant.new(image.blob, variation)
+	end
+
+
+	private
+
+	def image_format
+  	return unless image.attached?
+  	return if image.blob.content_type.start_with? 'image/'
+  	image.purge_later
+  	errors.add(:image, ': File type is not allowed')
+	end
+
 end

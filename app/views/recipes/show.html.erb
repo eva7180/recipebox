@@ -1,13 +1,15 @@
 <div class="main_content">
 	<div id="recipe_top" class="row">
 		<div class="col-md-4">
-			<%= image_tag @recipe.image.url(:medium), class: 'recipe_image' %>
+				<% if @recipe.image.attached? %>
+					<%= image_tag @recipe.image_variant, class: 'recipe_image' %>
+				<% end %>
 		</div>
 		<div class="col-md-8">
 			<div id="recipe_info">
 				<h1><%= @recipe.title %></h1>
 				<p class="description"><%= @recipe.description %></p>
-				<p><br>Submitted by <%= @recipe.user.email %></p>
+				<!-- <p><br>Submitted by <%= @recipe.user.email %></p> -->
 			</div>
 		</div>
 	</div>

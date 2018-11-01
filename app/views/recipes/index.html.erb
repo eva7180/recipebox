@@ -5,7 +5,9 @@
 				<div class="recipe">
 					<div class="image_wrapper">
 						<%= link_to recipe do %>
-							<%= image_tag recipe.image.url(:medium) %>
+							<% if recipe.image.attached? %>
+								<%= image_tag recipe.image_variant %>
+							<% end %>
 						<% end %>
 					</div>
 					<h2>
