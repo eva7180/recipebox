@@ -92,4 +92,6 @@ Rails.application.configure do
   # Store files on Amazon S3.
   config.active_storage.service = :amazon
 
+  config.require_master_key = true
+
 end
